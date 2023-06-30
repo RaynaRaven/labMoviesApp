@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+import { MoviesContext } from "../contexts/moviesContext";
 import PageTemplate from '../components/templateMovieListPage';
 import { getUpcomingMovies } from "../api/tmdb-api";
 import { useQuery } from "react-query";
@@ -6,6 +7,9 @@ import Spinner from "../components/spinner";
 import AddToMustWatchIcon from "../components/cardIcons/addToMustWatch";
 
 const UpcomingMoviesPage = (props) => {
+  const context = useContext(MoviesContext);
+  console.log("mustWatchMovies: ", context.mustWatchMovies);
+
   const { data, error, isLoading, isError } = useQuery(
     "upcoming",
     getUpcomingMovies
