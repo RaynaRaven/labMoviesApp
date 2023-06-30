@@ -3,8 +3,9 @@ import PageTemplate from "../components/templateMovieListPage";
 import { getMovies } from "../api/tmdb-api";
 import { useQuery } from "react-query";
 import Spinner from "../components/spinner";
+import AddToFavouritesIcon from "../components/cardIcons/addtoFavourites";
 
-const HomePage = (props) => {
+const HomePage = () => {
   const { data, error, isLoading, isError } = useQuery("discover", getMovies);
 
   if (isLoading) {
@@ -16,16 +17,13 @@ const HomePage = (props) => {
 
   const movies = data ? data.results : [];
 
-  // Redundant, but necessary to avoid app crashing.
-  const favourites = movies.filter((m) => m.favorite);
-  localStorage.setItem("favourites", JSON.stringify(favourites));
-  const addToFavourites = (movieId) => true;
-
   return (
     <PageTemplate
       title="Discover Movies"
       movies={movies}
-      selectFavourite={addToFavourites}
+      action={(movie) => {
+        return <AddToFavouritesIcon movie={movie} />
+      }}
     />
   );
 };

@@ -18,7 +18,7 @@ const styles = {
   },
 };
 
-function MovieListPageTemplate({ movies, title, selectFavourite }) {
+function MovieListPageTemplate({ movies, title, action }) {
   const [titleFilter, setTitleFilter] = useState("");
   const [genreFilter, setGenreFilter] = useState("0");
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -39,16 +39,13 @@ function MovieListPageTemplate({ movies, title, selectFavourite }) {
   };
 
   return (
-   <>
+    <>
       <Grid container sx={styles.root}>
         <Grid item xs={12}>
           <Header title={title} />
         </Grid>
         <Grid item container spacing={5}>
-          <MovieList
-            movies={displayedMovies}
-            selectFavourite={selectFavourite}
-          />
+          <MovieList action={action} movies={displayedMovies} />
         </Grid>
       </Grid>
       <Fab
@@ -70,7 +67,7 @@ function MovieListPageTemplate({ movies, title, selectFavourite }) {
           genreFilter={genreFilter}
         />
       </Drawer>
-    </>  
+    </>
   );
 }
 export default MovieListPageTemplate;
