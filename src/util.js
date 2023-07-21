@@ -6,3 +6,10 @@ export function excerpt(string) {
     separator: /,?\.* +/, // separate by spaces, including preceding commas and periods
   });
 }
+
+export function subtractYears(date, years){
+  date.setFullYear(date.getFullYear() - 1);
+  return date;
+}
+
+

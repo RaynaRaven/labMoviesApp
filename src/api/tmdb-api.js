@@ -1,3 +1,5 @@
+import { subtractYears } from "../util";
+
 export const getMovies = () => {
   return fetch(
     `https://api.themoviedb.org/3/discover/movie?api_key=${
@@ -99,4 +101,24 @@ export const getUpcomingMovies = () => {
     .catch((error) => {
       throw error;
     });
+};
+
+export const getRecommendedMovies = () => {
+    const currentDate = new Date();
+    const releaseDate = subtractYears(currentDate, 1);
+    //TODO: include release date range to filter movies from the last year
+    return fetch(
+        `https://api.themoviedb.org/3/discover/movie?api_key=${
+            import.meta.env.VITE_TMDB_KEY
+        }&with_genres=28&sort_by=popularity.desc`
+    )
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error(response.json().message);
+            }
+            return response.json();
+        })
+        .catch((error) => {
+            throw error;
+        });
 };
