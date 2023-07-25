@@ -1,5 +1,5 @@
 import truncate from "lodash/truncate";
-
+//TODO: Add helper function to normalise json tvshow data i.e. add title property if name property exists
 export function excerpt(string) {
   return truncate(string, {    
     length: 400, // maximum 400 characters

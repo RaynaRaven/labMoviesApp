@@ -106,7 +106,8 @@ export const getUpcomingMovies = () => {
 export const getRecommendedMovies = () => {
     const currentDate = new Date;
     const currentDate2 = new Date;
-    const oneYearAgo = subtractYears(currentDate2, 1)
+    const oneYearAgo = subtractYears(currentDate2, 1);
+
     // console.log("oneYearAgo", oneYearAgo);
     const formattedCurrentDate = formatDate(currentDate);
     // console.log("formattedCurrentDate", formattedCurrentDate);
@@ -116,7 +117,34 @@ export const getRecommendedMovies = () => {
     const minCount = 1500;
 
     return fetch(
-        `https://api.themoviedb.org/3/discover/movie?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US&primary_release_date.gte=${formattedOneYearAgoDate}&primary_release_date.lte=${formattedCurrentDate}&vote_average.gte=${minRating}&vote_count.gte=${minCount}&sort_by=popularity.desc`
+        `https://api.themoviedb.org/3/discover/movie?api_key=${
+            import.meta.env.VITE_TMDB_KEY
+        }&language=en-US&primary_release_date.gte=${
+            formattedOneYearAgoDate
+        }&primary_release_date.lte=${
+            formattedCurrentDate
+        }&vote_average.gte=${
+            minRating
+        }&vote_count.gte=${
+            minCount
+        }&sort_by=popularity.desc`
+    )
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error(response.json().message);
+            }
+            return response.json();
+        })
+        .catch((error) => {
+            throw error;
+        });
+};
+
+export const getTrendingTvShows = () => {
+    return fetch(
+        `https://api.themoviedb.org/3/trending/tv/day?api_key=${
+            import.meta.env.VITE_TMDB_KEY
+        }&language=en-US&page=1`
     )
         .then((response) => {
             if (!response.ok) {

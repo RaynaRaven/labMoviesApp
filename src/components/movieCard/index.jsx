@@ -44,7 +44,7 @@ export default function MovieCard({ movie, action }) {
           ) : null
         }
         title={
-          <Typography variant="h5" component="p">
+          <Typography variant="h6" component="p">
             {movie.title}{" "}
           </Typography>
         }
