@@ -5,6 +5,7 @@ import { getTrendingTvShows } from "../api/tmdb-api";
 import { useQuery } from "react-query";
 import Spinner from "../components/spinner";
 import AddToMustWatchIcon from "../components/cardIcons/addToMustWatch";
+import {normalizeData} from "../util";
 // import AddToFavouritesIcon from "../components/cardIcons/addToFavourites";
 //TODO: import helper function
 
@@ -24,13 +25,12 @@ const TrendingTvShowsPage = (props) => {
   }
   
   const tvShows = data ? data.results : [];
-  //TODO: enable this to test helper func
-  //const normalizedTVShows = normalizeData(tvShows);
+  // const normalizedTVShows = normalizeData(tvShows);
 
   return (
     <PageTemplate
       title='Trending TV Series'
-      movies={tvShows}
+      items={tvShows}
       action={(tvShow) => {
         return <AddToMustWatchIcon tvShow={tvShow} />;
       }}

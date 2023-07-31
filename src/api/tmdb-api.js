@@ -1,4 +1,4 @@
-import { subtractYears, formatDate } from "../util";
+import { subtractYears, formatDate, normalizeData } from "../util";
 
 export const getMovies = () => {
   return fetch(
@@ -152,7 +152,22 @@ export const getTrendingTvShows = () => {
             }
             return response.json();
         })
+        .then((data) => {
+            console.log('Raw API data:', data);
+            if (!data.results) {
+                console.error('No results in data:', data);
+                throw new Error('No results in API response');
+            }
+            if (!Array.isArray(data.results)) {
+                console.error('Data results is not an array:', data.results);
+                throw new Error('API response structure unexpected');
+            }
+        const normalizedData = normalizeData(data.results);
+        console.log('Normalized data: ', normalizedData) // log normalised api response to check if it has genre_ids
+        return { ...data, results: normalizedData };
+        })
         .catch((error) => {
+            console.error('error fetching Tv shows:', error);
             throw error;
         });
 };
