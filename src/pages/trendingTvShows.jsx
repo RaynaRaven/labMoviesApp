@@ -5,9 +5,7 @@ import { getTrendingTvShows } from "../api/tmdb-api";
 import { useQuery } from "react-query";
 import Spinner from "../components/spinner";
 import AddToMustWatchIcon from "../components/cardIcons/addToMustWatch";
-import {normalizeData} from "../util";
 // import AddToFavouritesIcon from "../components/cardIcons/addToFavourites";
-//TODO: import helper function
 
 const TrendingTvShowsPage = (props) => {
   const context = useContext(MoviesContext);
@@ -24,8 +22,7 @@ const TrendingTvShowsPage = (props) => {
     return <h1>{error.message}</h1>;
   }
   
-  const tvShows = data ? data.results : [];
-  // const normalizedTVShows = normalizeData(tvShows);
+  const tvShows = data || [];
 
   return (
     <PageTemplate

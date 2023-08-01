@@ -141,30 +141,43 @@ export const getRecommendedMovies = () => {
 };
 
 export const getTrendingTvShows = () => {
-    return fetch(
+    //Array of urls to fetch from
+    const urls = [...Array(3)].map((_, i) =>
         `https://api.themoviedb.org/3/trending/tv/day?api_key=${
             import.meta.env.VITE_TMDB_KEY
-        }&language=en-US&page=1`
-    )
-        .then((response) => {
-            if (!response.ok) {
-                throw new Error(response.json().message);
-            }
-            return response.json();
+        }&language=en-US&page=${i + 1}`
+    );
+
+    return Promise.all(urls.map(url =>
+        fetch(url)
+            .then(response => {
+                if (!response.ok)  {
+                    return response.json().then(json => {
+                        throw new Error(json.message || "Something went wrong");
+                    });
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Data before normalization:', data);
+                return normalizeData(data.results);
+            })
+            .then(normalizedData => {
+                console.log('Normalized data: ', normalizedData);
+                return normalizedData;
+            })
+        ))
+        .then(pages => { // Flattens array of pages into one array
+            console.log('Pages before flattening:', pages);
+            const flattenedPages = [].concat(...pages);
+            console.log('Flattened pages: ', flattenedPages);
+            return flattenedPages;
         })
-        .then((data) => {
-            console.log('Raw API data:', data);
-            if (!data.results) {
-                console.error('No results in data:', data);
-                throw new Error('No results in API response');
-            }
-            if (!Array.isArray(data.results)) {
-                console.error('Data results is not an array:', data.results);
-                throw new Error('API response structure unexpected');
-            }
-        const normalizedData = normalizeData(data.results);
-        console.log('Normalized data: ', normalizedData) // log normalised api response to check if it has genre_ids
-        return { ...data, results: normalizedData };
+        .then(data => { // Filters out non-English shows
+            console.log('Data before filtering: ', data);
+            const filteredData = data.filter(tvShow => tvShow.original_language === 'en');
+            console.log('Data after filtering: ', filteredData)
+            return filteredData;
         })
         .catch((error) => {
             console.error('error fetching Tv shows:', error);
