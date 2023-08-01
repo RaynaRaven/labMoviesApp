@@ -28,7 +28,7 @@ const RecommendedMoviesPage = (props) => {
   return (
     <PageTemplate
       title='Recommended Movies'
-      movies={movies}
+      items={movies}
       action={(movie) => {
         return <AddToMustWatchIcon movie={movie} />;
       }}

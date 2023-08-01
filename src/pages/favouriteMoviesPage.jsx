@@ -32,7 +32,7 @@ const FavouriteMoviesPage = (props) => {
   return (
     <PageTemplate
       title="Favourite Movies"
-      movies={movies}
+      items={movies}
       action={(movie) => {
         return (
           <>
