@@ -1,5 +1,5 @@
 
-export const sampleMovie = {
+export const SampleMovie = {
     adult: false,
     backdrop_path: "/5Iw7zQTHVRBOYpA0V6z0yypOPZh.jpg",
     belongs_to_collection: {
@@ -80,7 +80,7 @@ export const sampleMovie = {
     vote_count: 9692,
   };
 
-export const sampleTVShow = {
+export const SampleTVShow = {
     adult: false,
     backdrop_path: "/bZGAX8oMDm3Mo5i0ZPKh9G2OcaO.jpg",
     created_by: [
