@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { MoviesContext } from "../contexts/moviesContext";
+import { TypeContext} from "../contexts/typeContext";
 import PageTemplate from '../components/templateMovieListPage';
 import { getUpcomingMovies } from "../api/tmdb-api";
 import { useQuery } from "react-query";
@@ -25,13 +26,15 @@ const UpcomingMoviesPage = (props) => {
   const movies = data ? data.results : [];
 
   return (
-    <PageTemplate
-      title='Upcoming Movies'
-      items={movies}
-      action={(movie) => {
-        return <AddToMustWatchIcon movie={movie} />;
-      }}
-    />
+      <TypeContext.Provider value='movie'>
+        <PageTemplate
+          title='Upcoming Movies'
+          items={movies}
+          action={(movie) => {
+            return <AddToMustWatchIcon movie={movie} />;
+          }}
+        />
+      </TypeContext.Provider>
   );
 };
 export default UpcomingMoviesPage;

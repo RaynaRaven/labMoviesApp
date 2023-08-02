@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { MoviesContext } from "../contexts/moviesContext";
+import { TypeContext} from "../contexts/typeContext";
 import PageTemplate from '../components/templateMovieListPage';
 import { getRecommendedMovies } from "../api/tmdb-api";
 import { useQuery } from "react-query";
@@ -26,13 +27,15 @@ const RecommendedMoviesPage = (props) => {
   const movies = data ? data.results : [];
 
   return (
-    <PageTemplate
-      title='Recommended Movies'
-      items={movies}
-      action={(movie) => {
-        return <AddToMustWatchIcon movie={movie} />;
-      }}
-    />
+      <TypeContext.Provider value='movie'>
+        <PageTemplate
+          title='Recommended Movies'
+          items={movies}
+          action={(movie) => {
+            return <AddToMustWatchIcon movie={movie} />;
+          }}
+        />
+      </TypeContext.Provider>
   );
 };
 export default RecommendedMoviesPage;
