@@ -1,18 +1,17 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import MovieDetails from "../components/movieDetails";
-import PageTemplate from "../components/templateMoviePage";
-// import useMovie from "../hooks/useMovie";
-import { getTVShow } from '../api/tmdb-api'
+import TvShowDetails from "../components/tvShowDetails";
+import PageTemplate from "../components/templateTvShowPage";
+import { getTvShow } from '../api/tmdb-api'
 import { useQuery } from "react-query";
 import Spinner from '../components/spinner'
 
-const TVShowDetailsPage = () => {
+const TvShowDetailsPage = () => {
   const { id } = useParams();
 
   const { data: tvShow, error, isLoading, isError } = useQuery(
     ["tvShow", { id: id }],
-    getTVShow
+    getTvShow
   );
 
   if (isLoading) {
@@ -27,8 +26,8 @@ const TVShowDetailsPage = () => {
     <>
       {tvShow? (
         <>
-          <PageTemplate movie={tvShow}>
-            <MovieDetails movie={tvShow} />
+          <PageTemplate tvShow={tvShow}>
+            <TvShowDetails tvShow={tvShow} />
           </PageTemplate>
         </>
       ) : (
@@ -38,4 +37,4 @@ const TVShowDetailsPage = () => {
   );
 };
 
-export default TVShowDetailsPage;
+export default TvShowDetailsPage;

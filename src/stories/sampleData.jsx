@@ -80,7 +80,7 @@ export const SampleMovie = {
     vote_count: 9692,
   };
 
-export const SampleTVShow = {
+export const SampleTvShow = {
     adult: false,
     backdrop_path: "/bZGAX8oMDm3Mo5i0ZPKh9G2OcaO.jpg",
     created_by: [
