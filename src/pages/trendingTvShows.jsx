@@ -1,19 +1,18 @@
 import React, { useContext } from "react";
 import { MoviesContext } from "../contexts/moviesContext";
 import PageTemplate from '../components/templateMovieListPage';
-import { getRecommendedMovies } from "../api/tmdb-api";
+import { getTrendingTvShows } from "../api/tmdb-api";
 import { useQuery } from "react-query";
 import Spinner from "../components/spinner";
 import AddToMustWatchIcon from "../components/cardIcons/addToMustWatch";
 // import AddToFavouritesIcon from "../components/cardIcons/addToFavourites";
 
-const RecommendedMoviesPage = (props) => {
+const TrendingTvShowsPage = (props) => {
   const context = useContext(MoviesContext);
-  console.log("recommendedMovies: ", context.mustWatchMovies);
 
   const { data, error, isLoading, isError } = useQuery(
-    "recommended",
-    getRecommendedMovies
+    "trendingTV",
+    getTrendingTvShows
   );
 
   if (isLoading) {
@@ -23,16 +22,16 @@ const RecommendedMoviesPage = (props) => {
     return <h1>{error.message}</h1>;
   }
   
-  const movies = data ? data.results : [];
+  const tvShows = data || [];
 
   return (
     <PageTemplate
-      title='Recommended Movies'
-      items={movies}
-      action={(movie) => {
-        return <AddToMustWatchIcon movie={movie} />;
+      title='Trending TV Series'
+      items={tvShows}
+      action={(tvShow) => {
+        return <AddToMustWatchIcon tvShow={tvShow} />;
       }}
     />
   );
 };
-export default RecommendedMoviesPage;
+export default TrendingTvShowsPage;

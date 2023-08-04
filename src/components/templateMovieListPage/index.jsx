@@ -17,20 +17,20 @@ const styles = {
     right: 2,
   },
 };
-
-function MovieListPageTemplate({ movies, title, action }) {
+//TODO: make this template more flexible to enable consumption of TV show items
+function MovieListPageTemplate({ items = [], title, action }) {
   const [titleFilter, setTitleFilter] = useState("");
   const [genreFilter, setGenreFilter] = useState("0");
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   const genreId = Number(genreFilter);
 
-  let displayedMovies = movies
-    .filter((m) => {
-      return m.title.toLowerCase().search(titleFilter.toLowerCase()) !== -1;
+  let displayedItems = items
+    .filter((item) => {
+      return item.title.toLowerCase().search(titleFilter.toLowerCase()) !== -1;
     })
-    .filter((m) => {
-      return genreId > 0 ? m.genre_ids.includes(genreId) : true;
+    .filter((item) => {
+      return genreId > 0 ? item.genre_ids.includes(genreId) : true;
     });
 
   const handleChange = (type, value) => {
@@ -45,7 +45,7 @@ function MovieListPageTemplate({ movies, title, action }) {
           <Header title={title} />
         </Grid>
         <Grid item container spacing={5}>
-          <MovieList action={action} movies={displayedMovies} />
+          <MovieList action={action} items={displayedItems} />
         </Grid>
       </Grid>
       <Fab

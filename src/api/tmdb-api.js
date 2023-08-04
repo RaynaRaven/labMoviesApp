@@ -1,4 +1,4 @@
-import { subtractYears, formatDate } from "../util";
+import { subtractYears, formatDate, normalizeData } from "../util";
 
 export const getMovies = () => {
   return fetch(
@@ -106,7 +106,8 @@ export const getUpcomingMovies = () => {
 export const getRecommendedMovies = () => {
     const currentDate = new Date;
     const currentDate2 = new Date;
-    const oneYearAgo = subtractYears(currentDate2, 1)
+    const oneYearAgo = subtractYears(currentDate2, 1);
+
     // console.log("oneYearAgo", oneYearAgo);
     const formattedCurrentDate = formatDate(currentDate);
     // console.log("formattedCurrentDate", formattedCurrentDate);
@@ -116,7 +117,17 @@ export const getRecommendedMovies = () => {
     const minCount = 1500;
 
     return fetch(
-        `https://api.themoviedb.org/3/discover/movie?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US&primary_release_date.gte=${formattedOneYearAgoDate}&primary_release_date.lte=${formattedCurrentDate}&vote_average.gte=${minRating}&vote_count.gte=${minCount}&sort_by=popularity.desc`
+        `https://api.themoviedb.org/3/discover/movie?api_key=${
+            import.meta.env.VITE_TMDB_KEY
+        }&language=en-US&primary_release_date.gte=${
+            formattedOneYearAgoDate
+        }&primary_release_date.lte=${
+            formattedCurrentDate
+        }&vote_average.gte=${
+            minRating
+        }&vote_count.gte=${
+            minCount
+        }&sort_by=popularity.desc`
     )
         .then((response) => {
             if (!response.ok) {
@@ -125,6 +136,51 @@ export const getRecommendedMovies = () => {
             return response.json();
         })
         .catch((error) => {
+            throw error;
+        });
+};
+
+export const getTrendingTvShows = () => {
+    //Array of urls to fetch from
+    const urls = [...Array(3)].map((_, i) =>
+        `https://api.themoviedb.org/3/trending/tv/day?api_key=${
+            import.meta.env.VITE_TMDB_KEY
+        }&language=en-US&page=${i + 1}`
+    );
+
+    return Promise.all(urls.map(url =>
+        fetch(url)
+            .then(response => {
+                if (!response.ok)  {
+                    return response.json().then(json => {
+                        throw new Error(json.message || "Something went wrong");
+                    });
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Data before normalization:', data);
+                return normalizeData(data.results);
+            })
+            .then(normalizedData => {
+                console.log('Normalized data: ', normalizedData);
+                return normalizedData;
+            })
+        ))
+        .then(pages => { // Flattens array of pages into one array
+            console.log('Pages before flattening:', pages);
+            const flattenedPages = [].concat(...pages);
+            console.log('Flattened pages: ', flattenedPages);
+            return flattenedPages;
+        })
+        .then(data => { // Filters out non-English shows
+            console.log('Data before filtering: ', data);
+            const filteredData = data.filter(tvShow => tvShow.original_language === 'en');
+            console.log('Data after filtering: ', filteredData)
+            return filteredData;
+        })
+        .catch((error) => {
+            console.error('error fetching Tv shows:', error);
             throw error;
         });
 };

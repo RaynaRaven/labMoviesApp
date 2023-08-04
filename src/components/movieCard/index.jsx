@@ -23,13 +23,13 @@ const styles = {
   },
 };
 
-export default function MovieCard({ movie, action }) {
+export default function MovieCard({ item, action }) {
   const { favourites, addToFavourites } = useContext(MoviesContext);
 
-  if (favourites.find((id) => id === movie.id)) {
-    movie.favourite = true;
+  if (favourites.find((id) => id === item.id)) {
+    item.favourite = true;
   } else {
-    movie.favourite = false;
+    item.favourite = false;
   }
 
   return (
@@ -37,23 +37,23 @@ export default function MovieCard({ movie, action }) {
       <CardHeader
         sx={styles.header}
         avatar={
-          movie.favourite ? (
+          item.favourite ? (
             <Avatar sx={styles.avatar}>
               <FavoriteIcon />
             </Avatar>
           ) : null
         }
         title={
-          <Typography variant="h5" component="p">
-            {movie.title}{" "}
+          <Typography variant="h6" component="p">
+            {item.title}{" "}
           </Typography>
         }
       />
       <CardMedia
         sx={styles.media}
         image={
-          movie.poster_path
-            ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
+          item.poster_path
+            ? `https://image.tmdb.org/t/p/w500/${item.poster_path}`
             : img
         }
       />
@@ -62,20 +62,20 @@ export default function MovieCard({ movie, action }) {
           <Grid item xs={6}>
             <Typography variant="h6" component="p">
               <CalendarIcon fontSize="small" />
-              {movie.release_date}
+              {item.release_date}
             </Typography>
           </Grid>
           <Grid item xs={6}>
             <Typography variant="h6" component="p">
               <StarRateIcon fontSize="small" />
-              {"  "} {movie.vote_average}{" "}
+              {"  "} {item.vote_average}{" "}
             </Typography>
           </Grid>
         </Grid>
       </CardContent>
       <CardActions disableSpacing>
-        {action(movie)}
-        <Link to={`/movies/${movie.id}`}>
+        {action(item)}
+        <Link to={`/movies/${item.id}`}>
           <Button variant="outlined" size="medium" color="primary">
             More Info ...
           </Button>

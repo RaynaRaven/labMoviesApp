@@ -20,7 +20,7 @@ const HomePage = () => {
   return (
     <PageTemplate
       title="Discover Movies"
-      movies={movies}
+      items={movies}
       action={(movie) => {
         return <AddToFavouritesIcon movie={movie} />
       }}
