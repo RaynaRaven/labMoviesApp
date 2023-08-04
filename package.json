@@ -12,6 +12,7 @@
     "react-dom": "^18.0.1",
     "react-hook-form": "^7.34.2",
     "react-query": "^3.13.0",
+    "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "6.3.0"
   },
   "scripts": {

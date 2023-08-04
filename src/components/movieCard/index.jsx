@@ -14,6 +14,7 @@ import Avatar from "@mui/material/Avatar";
 import img from "../../images/film-poster-placeholder.png";
 import { Link } from "react-router-dom";
 import { MoviesContext } from "../../contexts/moviesContext";
+import {TypeContext} from "../../contexts/typeContext";
 
 const styles = {
   card: { maxWidth: 345 },
@@ -25,12 +26,10 @@ const styles = {
 
 export default function MovieCard({ item, action }) {
   const { favourites, addToFavourites } = useContext(MoviesContext);
+    const type = useContext(TypeContext);
+    const linkPath = type === 'movie' ? `/movies/${item.id}` : `/TV/${item.id}`;
 
-  if (favourites.find((id) => id === item.id)) {
-    item.favourite = true;
-  } else {
-    item.favourite = false;
-  }
+  item.favourite = !!favourites.find((id) => id === item.id);
 
   return (
     <Card sx={styles.card}>
@@ -75,7 +74,7 @@ export default function MovieCard({ item, action }) {
       </CardContent>
       <CardActions disableSpacing>
         {action(item)}
-        <Link to={`/movies/${item.id}`}>
+        <Link to={linkPath}>
           <Button variant="outlined" size="medium" color="primary">
             More Info ...
           </Button>
