@@ -9,7 +9,7 @@ import AddToMustWatchIcon from "../components/cardIcons/addToMustWatch";
 
 const UpcomingMoviesPage = (props) => {
   const context = useContext(MoviesContext);
-  console.log("mustWatchMovies: ", context.mustWatchMovies);
+  // console.log("mustWatchMovies: ", context.mustWatchMovies);
 
   const { data, error, isLoading, isError } = useQuery(
     "upcoming",

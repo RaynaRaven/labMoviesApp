@@ -23,16 +23,15 @@ const SearchMoviePage = () => {
     }, [criteria]);
 
     const action = (movie) => {
-        console.log('Movie card clicked');
+        // console.log('Movie card clicked');
         // Perform action here (e.g., redirect to movie details page)
     }
 
     return (
         <div>
-            {/* Movie search form */}
+
             <MovieSearchForm setCriteria={setCriteria}/>
 
-            {/* Display movies */}
             <MovieList items={movies} action={action}/>
         </div>
     );

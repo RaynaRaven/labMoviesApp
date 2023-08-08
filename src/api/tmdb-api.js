@@ -18,7 +18,7 @@ export const getMovies = () => {
 };
 
 export const getMovie = (args) => {
-  console.log(args);
+  // console.log(args);
   const [, idPart] = args.queryKey;
   const { id } = idPart;
   return fetch(
@@ -179,24 +179,24 @@ export const getTrendingTvShows = () => {
                 return response.json();
             })
             .then(data => {
-                console.log('Data before normalization:', data);
+                // console.log('Data before normalization:', data);
                 return normalizeData(data.results);
             })
             .then(normalizedData => {
-                console.log('Normalized data: ', normalizedData);
+                // console.log('Normalized data: ', normalizedData);
                 return normalizedData;
             })
         ))
         .then(pages => { // Flattens array of pages into one array
-            console.log('Pages before flattening:', pages);
+            // console.log('Pages before flattening:', pages);
             const flattenedPages = [].concat(...pages);
-            console.log('Flattened pages: ', flattenedPages);
+            // console.log('Flattened pages: ', flattenedPages);
             return flattenedPages;
         })
         .then(data => { // Filters out non-English shows
-            console.log('Data before filtering: ', data);
+            // console.log('Data before filtering: ', data);
             const filteredData = data.filter(tvShow => tvShow.original_language === 'en');
-            console.log('Data after filtering: ', filteredData)
+            // console.log('Data after filtering: ', filteredData)
             return filteredData;
         })
         .catch((error) => {
