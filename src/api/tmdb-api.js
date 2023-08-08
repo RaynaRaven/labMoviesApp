@@ -223,3 +223,14 @@ export const getTvShowImages = ({ queryKey }) => {
             throw error;
         });
 };
+
+export const fetchGenres = async () => {
+    const response = await fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${import.meta.env.VITE_TMDB_KEY}`);
+    return response.json();
+};
+
+
+export const fetchActors = async (query) => {
+    const response = await fetch(`https://api.themoviedb.org/3/search/person?api_key=${import.meta.env.VITE_TMDB_KEY}&query=${query}`);
+    return response.json();
+};

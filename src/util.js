@@ -38,5 +38,14 @@ export function normalizeData(data) {
     }
     return newItem;
   });
+}
 
+export const generateYears = (startYear) => {
+  let currentYear = new Date().getFullYear(), years = [];
+  startYear = startYear || 1950;
+
+  while ( startYear <= currentYear ) {
+    years.push(startYear++);
+  }
+  return years;
 }

@@ -14,6 +14,7 @@ import AddMovieReviewPage from "./pages/addMovieReviewPage";
 import RecommendedMoviesPage from "./pages/recommendedMoviesPage";
 import TrendingTvShowsPage from "./pages/trendingTvShows";
 import TvShowPage from "./pages/tvShowDetailsPage";
+import SearchMoviesPage from "./pages/searchMoviesPage";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -32,6 +33,7 @@ const App = () => {
         <SiteHeader /> {/* New Header  */}
         <MoviesContextProvider>
           <Routes>
+            <Route path="/movies/search" element={<SearchMoviesPage />} />
             <Route path="/TV/trending" element={<TrendingTvShowsPage />} />
             <Route path="/movies/recommended" element={<RecommendedMoviesPage />} />
             <Route path="/reviews/form" element={<AddMovieReviewPage />} />

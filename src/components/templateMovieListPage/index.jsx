@@ -17,7 +17,7 @@ const styles = {
     right: 2,
   },
 };
-//TODO: make this template more flexible to enable consumption of TV show items
+
 function MovieListPageTemplate({ items = [], title, action }) {
   const [titleFilter, setTitleFilter] = useState("");
   const [genreFilter, setGenreFilter] = useState("0");

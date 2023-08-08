@@ -33,6 +33,7 @@ const SiteHeader = () => {
     { label: "Favorites", path: "/movies/favourites" },
     { label: "Recommended", path: "/movies/recommended" },
     { label: "Trending TV", path: "/TV/trending" },
+    { label: "Search Movies", path: "/movies/search" },
   ];
 
   const handleMenuSelect = (pageURL) => {
@@ -49,9 +50,6 @@ const SiteHeader = () => {
         <Toolbar >
           <Typography variant="h4" sx={styles.title}>
             TMDB Client
-          </Typography>
-          <Typography variant="h6" sx={styles.title}>
-            All you ever wanted to know about Movies!
           </Typography>
           {isMobile ? (
             <>
