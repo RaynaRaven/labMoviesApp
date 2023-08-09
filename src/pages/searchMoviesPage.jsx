@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import MovieSearchForm from '../components/MovieSearchForm';
+import TemplatePage from '../components/templateMovieListPage';
 import MovieList from '../components/MovieList';
 
 const SearchMoviePage = () => {
@@ -29,10 +30,8 @@ const SearchMoviePage = () => {
 
     return (
         <div>
-
             <MovieSearchForm setCriteria={setCriteria}/>
-
-            <MovieList items={movies} action={action}/>
+            <TemplatePage items={movies} action={action}/>
         </div>
     );
 }
