@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import MovieSearchForm from '../components/MovieSearchForm';
+import MovieSearchForm from '../components/movieSearchForm';
 import TemplatePage from '../components/templateMovieListPage';
 import MovieList from '../components/MovieList';
 
