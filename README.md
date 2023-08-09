@@ -1,36 +1,41 @@
 # Full Stack Development 2 - Assignment
 
-__Name:__ [your full name]
+__Name:__ Carol Marjara
 
 ## Features.
 
-[A bullet-point list of the features developed for the React SPA app (only new/modified ones for the Movies app),]
-
-+ Feature X.
-+ Feature Y. 
-+ etc.
++ Recommended Movies List
++ Trending TV Shows List
++ TV Shows details page
++ Movie Search Form
 
 ## Feature UI Designs.
 
-[ For each feature listed above, show a screenshot(s) of its UI layout (use appropriate magnification for accessibility). Include a caption with each image.]
+#### Recommended Movies
 
-e.g. 
+> Lists movies from the discover endpoint of TMDB released within the last year with a high vote count and rating.
 
-#### Upcoming Movies.
+![recommendedMoviesList](https://github.com/RaynaRaven/labMoviesApp/assets/98043382/aae937bd-728d-47aa-a3a1-075367b4d488)!
 
-> Lists movies from the Upcoming movies endpoint of TMDB.
 
-![][image1]
+#### Trending TV Shows
 
-#### Movies Reviews.
+> Lists movies from the Trending TV endpoint of TMDB
 
-> Lists all the reviews for a particular movie (shows text extract only).
+![TrendingTVList](https://github.com/RaynaRaven/labMoviesApp/assets/98043382/92df8eee-9423-47d5-a5fc-edb590486da9)!
 
-![][image2]
 
-> Click the 'Full Review' link of a review extract to see the review's full text. 
+#### TV Show Details
 
-![][image3]
+> Tv Show details can be accessed by clicking "more info" on a listed TV Show in Trending TV list.
+
+![TVShowDetails](https://github.com/RaynaRaven/labMoviesApp/assets/98043382/62f80eb2-359d-4ab9-9e46-9a43cec523e6)!
+
+#### Movie Search Form
+
+> Search movies by Genre, Actor, Runtime and Release Year.
+
+![SearchMoviesForm](https://github.com/RaynaRaven/labMoviesApp/assets/98043382/f8f6175a-455c-4c9f-b2a8-6758ab1b5467)!
 
 .... other features .......
 
