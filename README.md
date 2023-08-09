@@ -9,7 +9,10 @@ __Name:__ Carol Marjara
 + TV Shows details page
 + Movie Search Form
 
+
+
 ## Feature UI Designs.
+
 
 #### Recommended Movies
 
@@ -18,36 +21,51 @@ __Name:__ Carol Marjara
 ![recommendedMoviesList](https://github.com/RaynaRaven/labMoviesApp/assets/98043382/aae937bd-728d-47aa-a3a1-075367b4d488)
 
 
+
 #### Trending TV Shows
 
+
 > Lists movies from the Trending TV endpoint of TMDB
+
 
 ![TrendingTVList](https://github.com/RaynaRaven/labMoviesApp/assets/98043382/92df8eee-9423-47d5-a5fc-edb590486da9)
 
 
 #### TV Show Details
 
+
 > Tv Show details can be accessed by clicking "more info" on a listed TV Show in Trending TV list.
+
 
 ![TVShowDetails](https://github.com/RaynaRaven/labMoviesApp/assets/98043382/62f80eb2-359d-4ab9-9e46-9a43cec523e6)
 
+
 #### Movie Search Form
+
 
 > Search movies by Genre, Actor, Runtime and Release Year.
 
+
 ![SearchMoviesForm](https://github.com/RaynaRaven/labMoviesApp/assets/98043382/f8f6175a-455c-4c9f-b2a8-6758ab1b5467)
+
+
 
 .... other features .......
 
 ## Storybook Support
 
+
 > TvShowDetailsHeader
+
 
 ![TvShowDetailsHeader](https://github.com/RaynaRaven/labMoviesApp/assets/98043382/8e961bf1-26dc-4dd5-bf88-3cd9a76c2043)
 
+
 > Fantasy Movie Form Component (designed on feature branch, not implemented in a view)
 
+
 ![fantasyMovieForm](https://github.com/RaynaRaven/labMoviesApp/assets/98043382/00fb6ab2-e8c3-4d00-b331-450c9a782e0c)
+
 
 ## Deployment (if relevant).
 
