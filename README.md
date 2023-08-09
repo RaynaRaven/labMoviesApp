@@ -50,7 +50,7 @@ __Name:__ Carol Marjara
 
 
 
-.... other features .......
+####.... Additional features .......
 
 ## Storybook Support
 
@@ -67,7 +67,7 @@ __Name:__ Carol Marjara
 ![fantasyMovieForm](https://github.com/RaynaRaven/labMoviesApp/assets/98043382/00fb6ab2-e8c3-4d00-b331-450c9a782e0c)
 
 
-## Deployment (if relevant).
+## Deployment
 
 vercel URL https://lab-movies-app-c9gt-h05ovbcb9-raynaraven.vercel.app
 note: App deployed but there are behavioural issues with app behaviour in deployed version that are not present in local vite build. Could not triage due to time constraints.
